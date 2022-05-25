@@ -63,7 +63,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
     }, 2000);
   }
 
-  submit() {
+  public submit() {
     this.formData = {...this.form.value};
     this.formData.id = Math.random();
     this.formData.completed = false;
@@ -74,7 +74,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
   }
 
-  deleteItem(item: any) {
+  public deleteItem(item: any) {
     this.subscription = this.todoDataService.deleteTodo(item.id).subscribe(() => {
       location.reload()
     })
