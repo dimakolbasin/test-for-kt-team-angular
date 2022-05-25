@@ -14,11 +14,9 @@ export class TodoDataService {
   }
 
   public getPageItems(items: Observable<any>, page: number, itemsPerPage: number): Observable<TablePage> {
-
     return items.pipe(
       map(i => {
         let startIndex = itemsPerPage * (page - 1);
-
         return new TablePage(i.length, i.slice(startIndex, startIndex + itemsPerPage), i);
       })
     );
