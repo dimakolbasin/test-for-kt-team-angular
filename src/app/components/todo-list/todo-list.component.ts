@@ -60,7 +60,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
     this.visibleLoader = true;
     this.interval = setInterval(() => {
       this.visibleLoader = false;
-    }, 1000);
+    }, 2000);
   }
 
   submit() {
