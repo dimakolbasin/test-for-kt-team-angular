@@ -1,0 +1,39 @@
+<div class="todoList">
+
+  <form class="form" [formGroup]="form" (ngSubmit)="submit()">
+    <div class="form__control">
+      <input type="text" placeholder="new todo" formControlName="title">
+    </div>
+    <button type="submit">SEND</button>
+  </form>
+<div class="todoList__container" >
+  <div *ngIf="!visibleLoader;else loader">
+  <ng-container *ngFor="let item of data; index as i">
+    <!--<span>{{i + 1}})</span>-->
+    <div class="todoList__item">
+      <div class="todoList__btn-done"
+           (click)="completeTodoItem(item, i)">ok</div>
+
+
+        <strong
+          [ngClass]='item.completed ? "todoList__complete" : ""'>
+          {{item.title}}
+        </strong>
+      <div
+        (click)="deleteItem(item)"
+        class="todoList__btn-drop">del</div>
+      </div>
+  </ng-container>
+  </div>
+</div>
+  <ngb-pagination class="d-flex justify-content-center pagination-todo"
+                  [collectionSize]="collectionSize"
+                  size="{{limit}}"
+                  [(page)]="page"
+                  (pageChange)="onPageChanged($event)" >
+
+  </ngb-pagination>
+</div>
+<ng-template #loader>
+  <div class="loader"></div>
+</ng-template>
