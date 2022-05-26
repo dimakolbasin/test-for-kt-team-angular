@@ -10,15 +10,15 @@ export class TodoDataService {
   }
 
   public getTodoList(page: number, itemsPerPage: number): Observable<TablePage> {
-    let items = this.httpClient.get("http://localhost:3000/todo?_sort=time&_order=desc");
+    let items: Observable<TodoModel[]> = this.httpClient.get<TodoModel[]>("http://localhost:3000/todo?_sort=time&_order=desc");
     return this.getPageItems(items, page, itemsPerPage);
   }
 
-  public getPageItems(items: Observable<any>, page: number, itemsPerPage: number): Observable<TablePage> {
+  public getPageItems(items: Observable<TodoModel[]>, page: number, itemsPerPage: number): Observable<TablePage> {
     return items.pipe(
-      map(i => {
+      map(item => {
         let startIndex = itemsPerPage * (page - 1);
-        return new TablePage(i.length, i.slice(startIndex, startIndex + itemsPerPage), i);
+        return new TablePage(item.length, item.slice(startIndex, startIndex + itemsPerPage), item);
       })
     );
   }

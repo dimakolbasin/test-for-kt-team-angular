@@ -19,7 +19,6 @@ export class TodoListComponent implements OnInit, OnDestroy {
   public form: FormGroup = new FormGroup({});
   private fullData: TodoModel[] = [];
   public visibleLoader: boolean = false;
-  public interval: number|undefined;
 
 
   constructor(private todoDataService: TodoDataService) {
@@ -35,7 +34,6 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-    clearInterval(this.interval);
   }
 
   public completeTodoItem(item: TodoModel, i: number): void {
@@ -47,19 +45,13 @@ export class TodoListComponent implements OnInit, OnDestroy {
   }
 
   public loadPage(): void {
+    this.visibleLoader = true;
     this.subscription = this.todoDataService.getTodoList(this.page, this.limit).subscribe(todoList => {
       this.data = todoList.rows;
       this.collectionSize = todoList.totalCount;
       this.fullData = todoList.fullData;
-    })
-  }
-
-  public onPageChanged(): void {
-    this.loadPage();
-    this.visibleLoader = true;
-    this.interval = setInterval(() => {
       this.visibleLoader = false;
-    }, 2000);
+    })
   }
 
   public submit(): void {
