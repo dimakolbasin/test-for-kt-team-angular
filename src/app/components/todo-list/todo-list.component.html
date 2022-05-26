@@ -13,12 +13,11 @@
     <div class="todoList__item">
       <div class="todoList__btn-done"
            (click)="completeTodoItem(item, i)">ok</div>
-
-
-        <strong
-          [ngClass]='item.completed ? "todoList__complete" : ""'>
-          {{item.title}}
-        </strong>
+        <div class="todoList__text" [ngClass]='item.completed ? "todoList__complete" : ""'>
+          <strong>
+            {{item.title}}
+          </strong>
+        </div>
       <div
         (click)="deleteItem(item)"
         class="todoList__btn-drop">del</div>
