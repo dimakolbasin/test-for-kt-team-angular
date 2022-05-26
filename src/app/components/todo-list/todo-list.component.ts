@@ -68,7 +68,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
   }
 
-  public deleteItem(item: TodoModel) {
+  public deleteItem(item: TodoModel): void {
     this.subscription = this.todoDataService.deleteTodo(item.id).subscribe(() => {
       location.reload()
     })

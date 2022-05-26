@@ -1,12 +1,11 @@
 <div class="todoList">
-
   <form class="form" [formGroup]="form" (ngSubmit)="submit()">
     <div class="form__control">
       <input type="text" placeholder="new todo" formControlName="title">
     </div>
     <button type="submit" [disabled]="form.invalid">SEND TODO</button>
   </form>
-  <span *ngIf="form.invalid" style="color: red; font-size: 8px">введите 1 до 30 символов</span>
+  <span *ngIf="form.invalid" style="color: red; font-size: 8px">введите от 1 до 30 символов</span>
 <div class="todoList__container" [ngClass]='data.length < 10 ? "todoList__media-container" : ""'>
   <div *ngIf="!visibleLoader; else loader">
   <ng-container *ngFor="let item of data; index as i">
