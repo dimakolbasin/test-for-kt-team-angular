@@ -9,7 +9,7 @@ export class TodoDataService {
   }
 
   public getTodoList(page: number, itemsPerPage: number): Observable<TablePage> {
-    let items = this.httpClient.get("http://localhost:3000/todo");
+    let items = this.httpClient.get("http://localhost:3000/todo?_sort=time&_order=desc");
     return this.getPageItems(items, page, itemsPerPage);
   }
 

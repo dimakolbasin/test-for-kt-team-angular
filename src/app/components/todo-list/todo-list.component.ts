@@ -67,6 +67,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
     this.formData = {...this.form.value};
     this.formData.id = Math.random();
     this.formData.completed = false;
+    this.formData.time = new Date().getTime();
 
     this.subscription = this.todoDataService.addTodo(this.formData).subscribe(() => {
       location.reload();
