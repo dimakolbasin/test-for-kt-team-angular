@@ -3,7 +3,7 @@
     <div class="form__control">
       <input type="text" placeholder="new todo" formControlName="title">
     </div>
-    <button type="submit" [disabled]="form.invalid">SEND TODO</button>
+    <button type="submit" [disabled]="form.invalid">SEND</button>
   </form>
   <span *ngIf="form.invalid" style="color: red; font-size: 8px">введите от 1 до 30 символов</span>
 <div class="todoList__container" [ngClass]='data.length < 10 ? "todoList__media-container" : ""'>
