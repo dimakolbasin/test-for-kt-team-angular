@@ -17,8 +17,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
   public page: number = 0;
   public collectionSize: number = 0;
   public form: FormGroup = new FormGroup({});
-  public formData: any = null;
-  private fullData: any = [];
+  private fullData: TodoModel[] = [];
   public visibleLoader: boolean = false;
   public interval: number|undefined;
 
@@ -39,7 +38,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
     clearInterval(this.interval);
   }
 
-  public completeTodoItem(item: any, i: number): void {
+  public completeTodoItem(item: TodoModel, i: number): void {
     this.data[i].completed = !this.data[i].completed;
     this.todoDataService.updateTodo(item.id, this.data[i]).subscribe(() => {
       console.log("todo done")
@@ -55,7 +54,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
     })
   }
 
-  public onPageChanged(event: any): void {
+  public onPageChanged(): void {
     this.loadPage();
     this.visibleLoader = true;
     this.interval = setInterval(() => {
@@ -63,19 +62,21 @@ export class TodoListComponent implements OnInit, OnDestroy {
     }, 2000);
   }
 
-  public submit() {
-    this.formData = {...this.form.value};
-    this.formData.id = uuidv4();
-    this.formData.completed = false;
-    this.formData.time = new Date().getTime();
+  public submit(): void {
+    const body: TodoModel = {
+      title: this.form.value.title,
+      id: uuidv4(),
+      completed: false,
+      time: new Date().getTime()
+    };
 
-    this.subscription = this.todoDataService.addTodo(this.formData).subscribe(() => {
+    this.subscription = this.todoDataService.addTodo(body).subscribe(() => {
       location.reload();
     })
 
   }
 
-  public deleteItem(item: any) {
+  public deleteItem(item: TodoModel) {
     this.subscription = this.todoDataService.deleteTodo(item.id).subscribe(() => {
       location.reload()
     })

@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {map, Observable} from "rxjs";
 import {TablePage} from "../table-page";
+import {TodoModel} from "../models/todo.model";
 
 @Injectable()
 export class TodoDataService {
@@ -22,16 +23,16 @@ export class TodoDataService {
     );
   }
 
-  public addTodo(body: any): Observable<any> {
-    return this.httpClient.post("http://localhost:3000/todo", body)
+  public addTodo(body: TodoModel): Observable<TodoModel> {
+    return this.httpClient.post<TodoModel>("http://localhost:3000/todo", body)
   }
 
-  public deleteTodo(id: number): Observable<any> {
-    return this.httpClient.delete("http://localhost:3000/todo/" + id)
+  public deleteTodo(id: string): Observable<void> {
+    return this.httpClient.delete<void>("http://localhost:3000/todo/" + id)
   }
 
-  public updateTodo(id: number, body: any): Observable<any> {
-    return this.httpClient.put("http://localhost:3000/todo/" + id, body)
+  public updateTodo(id: string, body: TodoModel): Observable<void> {
+    return this.httpClient.put<void>("http://localhost:3000/todo/" + id, body)
   }
 }
 
