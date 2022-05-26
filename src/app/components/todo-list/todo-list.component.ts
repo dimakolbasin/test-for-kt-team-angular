@@ -3,7 +3,7 @@ import {TodoDataService} from "../../services/todo-data.service";
 import {Subscription} from "rxjs";
 import {TodoModel} from "../../models/todo.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-
+import { v4 as uuidv4 } from 'uuid';
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
@@ -65,7 +65,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
   public submit() {
     this.formData = {...this.form.value};
-    this.formData.id = Math.random();
+    this.formData.id = uuidv4();
     this.formData.completed = false;
     this.formData.time = new Date().getTime();
 
