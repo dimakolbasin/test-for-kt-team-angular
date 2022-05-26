@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {TodoDataService} from "../../services/todo-data.service";
 import {Subscription} from "rxjs";
 import {TodoModel} from "../../models/todo.model";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-todo-list',
@@ -28,7 +28,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      title: new FormControl('')
+      title: new FormControl('', [Validators.required, Validators.min(1)])
     })
     this.page = 1;
     this.loadPage();

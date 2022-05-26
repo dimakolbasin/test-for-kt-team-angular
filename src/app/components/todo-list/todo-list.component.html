@@ -4,8 +4,9 @@
     <div class="form__control">
       <input type="text" placeholder="new todo" formControlName="title">
     </div>
-    <button type="submit">SEND</button>
+    <button type="submit" [disabled]="form.invalid">SEND TODO</button>
   </form>
+  <span *ngIf="form.invalid" style="color: red; font-size: 8px">введите хотя бы 1 символ</span>
 <div class="todoList__container" >
   <div *ngIf="!visibleLoader;else loader">
   <ng-container *ngFor="let item of data; index as i">
