@@ -6,23 +6,21 @@
     </div>
     <button type="submit" [disabled]="form.invalid">SEND TODO</button>
   </form>
-  <span *ngIf="form.invalid" style="color: red; font-size: 8px">введите хотя бы 1 символ</span>
-<div class="todoList__container" >
-  <div *ngIf="!visibleLoader;else loader">
+  <span *ngIf="form.invalid" style="color: red; font-size: 8px">введите 1 до 30 символов</span>
+<div class="todoList__container" [ngClass]='data.length < 10 ? "todoList__media-container" : ""'>
+  <div *ngIf="!visibleLoader; else loader">
   <ng-container *ngFor="let item of data; index as i">
-    <!--<span>{{i + 1}})</span>-->
     <div class="todoList__item">
-      <div class="todoList__btn-done"
-           (click)="completeTodoItem(item, i)">ok</div>
-        <div class="todoList__text" [ngClass]='item.completed ? "todoList__complete" : ""'>
-          <strong>
+        <div class="todoList__text"
+             [ngClass]='item.completed ? "todoList__complete" : ""'
+             (click)="completeTodoItem(item, i)">
             {{item.title}}
-          </strong>
         </div>
       <div
-        (click)="deleteItem(item)"
-        class="todoList__btn-drop">del</div>
-      </div>
+      (click)="deleteItem(item)"
+      class="todoList__btn-drop">X
+    </div>
+    </div>
   </ng-container>
   </div>
 </div>

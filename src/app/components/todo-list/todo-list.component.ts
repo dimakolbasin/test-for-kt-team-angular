@@ -28,7 +28,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      title: new FormControl('', [Validators.required, Validators.min(1)])
+      title: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(30)])
     })
     this.page = 1;
     this.loadPage();
