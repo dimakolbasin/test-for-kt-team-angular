@@ -55,10 +55,27 @@
     background-color: yellow;
   }
 
-}
+  .form {
+    display: flex;
+  }
 
-.form {
-  display: flex;
+  @media (max-width: 500px) {
+    &__btn-drop {
+      margin-top: 12px;
+    }
+    &__item {
+      align-items: flex-start;
+      align-content: flex-start;
+      height: 50px;
+    }
+    &__text {
+      word-break: break-word;
+    }
+
+    &__media-container {
+      height: 100%;
+    }
+  }
 }
 
 .loader {

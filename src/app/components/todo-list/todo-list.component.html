@@ -1,7 +1,7 @@
 <div class="todoList">
   <form class="form" [formGroup]="form" (ngSubmit)="submit()">
     <div class="form__control">
-      <input type="text" placeholder="new todo" formControlName="title">
+      <input maxlength="30" type="text" placeholder="new todo" formControlName="title">
     </div>
     <button type="submit" [disabled]="form.invalid">SEND</button>
   </form>
