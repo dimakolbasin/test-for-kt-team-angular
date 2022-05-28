@@ -1,36 +1,43 @@
 <div class="todoList">
-  <form class="form" [formGroup]="form" (ngSubmit)="submit()">
+  <form class="todoList__form"
+        [formGroup]="form" (ngSubmit)="submit()">
     <div class="form__control">
-      <input maxlength="30" type="text" placeholder="new todo" formControlName="title">
+      <input maxlength="30"
+             type="text"
+             placeholder="new todo"
+             formControlName="title">
     </div>
-    <button type="submit" [disabled]="form.invalid">SEND</button>
+    <button type="submit"
+            [disabled]="form.invalid">SEND
+    </button>
   </form>
-  <span *ngIf="form.invalid" style="color: red; font-size: 8px">введите от 1 до 30 символов</span>
-<div class="todoList__container" [ngClass]='data.length < 10 ? "todoList__media-container" : ""'>
-  <div *ngIf="!visibleLoader; else loader">
-  <ng-container *ngFor="let item of data; index as i">
-    <div class="todoList__item"
-         [ngClass]='item.completed ? "todoList__complete" : ""'>
-        <div class="todoList__text"
-             (click)="completeTodoItem(item, i)">
-            {{item.title}}
-        </div>
-      <div
-      (click)="deleteItem(item)"
-      class="todoList__btn-drop">X
-    </div>
-    </div>
-  </ng-container>
-  </div>
-</div>
-  <ngb-pagination class="d-flex justify-content-center pagination-todo pagination-item"
+  <span *ngIf="form.invalid"
+        class="todoList__form-warning">введите от 1 до 30 символов
+  </span>
+  <ngb-pagination class="d-flex justify-content-center pagination-todo todoList__pagination-item"
                   [collectionSize]="collectionSize"
                   size="{{limit}}"
                   [(page)]="page"
                   (pageChange)="loadPage()">
-
   </ngb-pagination>
+  <div class="todoList__container">
+    <div *ngIf="!visibleLoader; else loader">
+      <ng-container *ngFor="let item of data; index as i">
+        <div class="todoList__item"
+             [ngClass]='item.completed ? "todoList__item-complete" : ""'>
+          <div class="todoList__item-text"
+               [ngClass]='item.title.length > 15 ? "todoList__item-wrap-text" : ""'
+               (click)="completeTodoItem(item, i)">
+            {{item.title}}
+          </div>
+          <div (click)="deleteItem(item)"
+            class="todoList__btn-drop">X
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
 </div>
 <ng-template #loader>
-  <div class="loader"></div>
+  <div class="todoList__loader"></div>
 </ng-template>

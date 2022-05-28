@@ -8,8 +8,39 @@
     width: 100%;
   }
 
-  &__media-container {
-    height: 330px;
+  &__item {
+    width: 250px;
+    margin-top: 8px;
+    border: solid 1px gray;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    cursor: pointer;
+
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+
+    &:hover {
+      transition: .3s;
+      background-color: #FFE4E1;
+    }
+
+    &-complete {
+      background-color: yellow;
+    }
+
+    &-text {
+      height: 24px;
+      cursor: pointer;
+    }
+
+    &-wrap-text {
+      height: 50px;
+      word-break: break-word;
+    }
   }
 
   &__btn-drop {
@@ -25,77 +56,29 @@
     }
   }
 
-  &__text {
-    justify-content: space-between;
+  &__form {
     display: flex;
-    flex-direction: row;
-    text-align: center;
-    min-width: 90%;
-    height: 24px;
-    cursor: pointer;
-  }
 
-  &__item {
-    margin-top: 8px;
-    border: solid 1px gray;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    align-content: center;
-    cursor: pointer;
-
-    &:hover {
-      transition: .3s;
-      background-color: #FFE4E1;
+    &-warning {
+      color: red;
+      font-size: 8px;
     }
   }
 
-  &__complete {
-    background-color: yellow;
+  &__loader {
+    margin-left: 80px;
+    margin-top: 70px;
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #3498db;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
   }
 
-  .form {
-    display: flex;
+  &__pagination-item {
+    margin-top: 10px;
   }
-
-  @media (max-width: 500px) {
-    &__btn-drop {
-      margin-top: 12px;
-    }
-    &__item {
-      align-items: flex-start;
-      align-content: flex-start;
-      height: 50px;
-    }
-    &__text {
-      word-break: break-word;
-    }
-
-    &__media-container {
-      height: 100%;
-    }
-
-    .loader {
-      margin-left: 55px;
-      margin-bottom: 40px;
-    }
-  }
-}
-
-.loader {
-  margin-left: 80px;
-  margin-top: 70px;
-  border: 16px solid #f3f3f3;
-  border-top: 16px solid #3498db;
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  animation: spin 2s linear infinite;
-}
-
-.pagination-item {
-  margin: 10px;
 }
 
 @keyframes spin {
