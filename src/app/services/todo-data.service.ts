@@ -6,8 +6,7 @@ import {TodoModel} from "../models/todo.model";
 
 @Injectable()
 export class TodoDataService {
-  constructor(private httpClient: HttpClient) {
-  }
+  constructor(private httpClient: HttpClient) {}
 
   public getTodoList(page: number, itemsPerPage: number): Observable<TablePage> {
     let items: Observable<TodoModel[]> = this.httpClient.get<TodoModel[]>("http://localhost:3000/todo?_sort=time&_order=desc");
@@ -24,15 +23,15 @@ export class TodoDataService {
   }
 
   public addTodo(body: TodoModel): Observable<TodoModel> {
-    return this.httpClient.post<TodoModel>("http://localhost:3000/todo", body)
+    return this.httpClient.post<TodoModel>("http://localhost:3000/todo", body);
   }
 
   public deleteTodo(id: string): Observable<void> {
-    return this.httpClient.delete<void>("http://localhost:3000/todo/" + id)
+    return this.httpClient.delete<void>("http://localhost:3000/todo/" + id);
   }
 
   public updateTodo(id: string, body: TodoModel): Observable<void> {
-    return this.httpClient.put<void>("http://localhost:3000/todo/" + id, body)
+    return this.httpClient.put<void>("http://localhost:3000/todo/" + id, body);
   }
 }
 
