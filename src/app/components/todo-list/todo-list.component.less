@@ -8,8 +8,12 @@
     width: 100%;
   }
 
+  &__wrapper-item {
+
+  }
+
   &__item {
-    width: 250px;
+    width: 260px;
     margin-top: 8px;
     border: solid 1px gray;
     display: flex;
@@ -40,6 +44,7 @@
     }
 
     &-wrap-text {
+      max-width: 90%;
       height: 50px;
       word-break: break-word;
     }
@@ -65,6 +70,15 @@
       color: red;
       font-size: 8px;
     }
+
+    &-control {
+      display: flex;
+      flex-wrap: nowrap;
+    }
+
+    &-input {
+      width: 205px;
+    }
   }
 
   &__loader {
@@ -84,6 +98,10 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
