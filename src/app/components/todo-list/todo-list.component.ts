@@ -21,8 +21,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
   public visibleLoader: boolean = false;
 
 
-  constructor(private todoDataService: TodoDataService) {
-  }
+  constructor(private todoDataService: TodoDataService) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -34,10 +33,6 @@ export class TodoListComponent implements OnInit, OnDestroy {
     });
     this.page = 1;
     this.loadPage();
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
   }
 
   public completeTodoItem(item: TodoModel, i: number): void {
@@ -66,15 +61,17 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
     this.subscription = this.todoDataService.addTodo(body).subscribe(() => {
       location.reload();
-    })
-
+    });
   }
 
   public deleteItem(item: TodoModel): void {
     this.subscription = this.todoDataService.deleteTodo(item.id).subscribe(() => {
       location.reload();
-    })
+    });
   }
 
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
 }
