@@ -24,15 +24,16 @@
                   [maxSize]="4">
   </ngb-pagination>
   <div class="todoList__container">
-    <div *ngIf="!visibleLoader; else loader"
-         class="todoList__wrapper-item">
+    <div *ngIf="!visibleLoader; else loader">
       <ng-container *ngFor="let item of data; index as i">
-        <div class="todoList__item"
-             [ngClass]='item.completed ? "todoList__item-complete" : ""'
-             (click)="completeTodoItem(item, i)">
-          <div class="todoList__item-text"
-               [ngClass]='item.title.length >= 16 ? "todoList__item-wrap-text" : ""'>
-            {{item.title}}
+        <div class="todoList__wrapper-item"
+             [ngClass]='item.completed ? "todoList__item-complete" : ""'>
+          <div class="todoList__item"
+               (click)="completeTodoItem(item, i)">
+            <div class="todoList__item-text"
+                 [ngClass]='item.title.length >= 16 ? "todoList__item-wrap-text" : ""'>
+              {{item.title}}
+            </div>
           </div>
           <div (click)="deleteItem(item)"
                class="todoList__btn-drop">X
