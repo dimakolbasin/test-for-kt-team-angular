@@ -18,7 +18,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
   public page: number = 0;
   public collectionSize: number = 0;
   public form: FormGroup = new FormGroup({});
-  private fullData: TodoModel[] = [];
+  public fullData: TodoModel[] = [];
   public visibleLoader: boolean = false;
 
 
@@ -49,7 +49,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
       this.collectionSize = todoList.totalCount;
       this.fullData = todoList.fullData;
       this.visibleLoader = false;
-    })
+    });
   }
 
   public submit(): void {

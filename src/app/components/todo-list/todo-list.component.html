@@ -12,10 +12,8 @@
       </button>
     </div>
   </form>
-  <span *ngIf="form.invalid"
-        class="todoList__form-warning">введите от 1 до 30 символов
-  </span>
-  <ngb-pagination *ngIf="data.length > 0"
+  <span class="todoList__form-warning">введите от 1 до 30 символов</span>
+  <ngb-pagination *ngIf="fullData.length > 10"
                   class="d-flex justify-content-center pagination-todo todoList__pagination-item"
                   size="sm"
                   [collectionSize]="collectionSize"
