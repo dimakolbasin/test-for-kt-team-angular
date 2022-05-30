@@ -20,6 +20,8 @@ export class TodoListComponent implements OnInit, OnDestroy {
   public form: FormGroup = new FormGroup({});
   public fullData: TodoModel[] = [];
   public visibleLoader: boolean = false;
+  public remainder: number = 0;
+  private deleteClickCounter: number = 0;
 
 
   constructor(private todoDataService: TodoDataService) {}
@@ -49,7 +51,9 @@ export class TodoListComponent implements OnInit, OnDestroy {
       this.collectionSize = todoList.totalCount;
       this.fullData = todoList.fullData;
       this.visibleLoader = false;
+      this.remainder = this.collectionSize % this.limit;
     });
+    this.deleteClickCounter = 0;
   }
 
   public submit(): void {
@@ -66,12 +70,18 @@ export class TodoListComponent implements OnInit, OnDestroy {
   }
 
   public deleteItem(item: TodoModel): void {
+    ++this.deleteClickCounter;
     this.subscription = this.todoDataService.deleteTodo(item.id).subscribe(() => {
       const updatedData = this.data.filter(i => i != item);
       if (updatedData.length === 0) {
-        window.location.reload();
-      }
-      else {
+        if (this.page != 1) {
+          this.page = this.page - 1;
+        }
+        this.loadPage();
+      } else if (this.deleteClickCounter === this.remainder) {
+        this.loadPage()
+        this.deleteClickCounter = 0;
+      } else {
         this.data = updatedData;
       }
     });
