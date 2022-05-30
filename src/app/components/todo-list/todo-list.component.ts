@@ -22,7 +22,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
   public visibleLoader: boolean = false;
   public remainder: number = 0;
   private deleteClickCounter: number = 0;
-
+  public inputField: string = '';
 
   constructor(private todoDataService: TodoDataService) {}
 
@@ -65,6 +65,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
     };
 
     this.subscription = this.todoDataService.addTodo(body).subscribe(() => {
+      this.inputField = "";
       this.page = 1;
       this.loadPage();
     });
