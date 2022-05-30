@@ -65,7 +65,8 @@ export class TodoListComponent implements OnInit, OnDestroy {
     };
 
     this.subscription = this.todoDataService.addTodo(body).subscribe(() => {
-      location.reload();
+      this.page = 1;
+      this.loadPage();
     });
   }
 
